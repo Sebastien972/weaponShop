@@ -1,0 +1,38 @@
+
+#registerContainer
+{
+    display: flex;
+    flex-direction: row-reverse;
+    height: 100%;
+    width: 100%;
+
+}
+
+.formRegister
+{
+    padding: 2.5rem;
+    width: 50%;
+    background: #fafafa;
+
+
+}
+
+.form-control {
+  background-color: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+
+}
+
+.btn--form {
+  padding: .5rem 2.5rem;
+  font-size: .95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  background: #111;
+  border-radius: remy(35px);
+ 
+}

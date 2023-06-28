@@ -1,0 +1,101 @@
+{% if app.session.get('cartData') is not null  %}
+{% set quantityCart = app.session.get('cartData').data.quantityCart %}
+{% else %}
+{% set quantityCart = 0 %}
+	
+{% endif %}
+{% set queryParam = app.request.query.all %}
+<header class="header_area">
+				<div
+					class="classy-nav-container breakpoint-off d-flex ">
+					<!-- Classy Menu -->
+					<nav
+						class="classy-navbar" id="essenceNav">
+						<!-- Logo -->
+						<a class="nav-brand" href="{{path('app_home')}}"><h2>weaponShop</h2></a>
+						<!-- Navbar Toggler -->
+						<div class="classy-navbar-toggler">
+							<span class="navbarToggler">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</div>
+						<!-- Menu -->
+						<div
+							class="classy-menu">
+							<!-- close btn -->
+							<div class="classycloseIcon">
+								<div class="cross-wrap">
+									<span class="top"></span>
+									<span class="bottom"></span>
+								</div>
+							</div>
+							<!-- Nav Start -->
+							<div class="classynav">
+								<ul>
+									<li>
+										<a href="{{path('app_home')}}">home</a>
+									</li>
+									<li>
+										<a href="{{path('app_shop')}}">Shop</a>
+									</li>
+									<li>
+										<a href="{{ path('app_contact') }}">Contact</a>
+									</li>
+								</ul>
+							</div>
+							<!-- Nav End -->
+						</div>
+					</nav>
+
+					<!-- Header Meta Data -->
+					<div
+						class="header-meta d-flex clearfix justify-content-end">
+						<!-- Search Area -->
+						{% if queryParam is not empty and queryParam.search is defined %}
+						{% set value = queryParam.search %}
+						
+						{% else %}
+							{% set value = "" %}
+						{% endif %}
+						<div class="search-area">
+							<form id='formSearch'>
+								<input name="search" id="search" value='{{value}}' placeholder="Type for search">
+								<button id='submitSearch'>
+									<i class="fa fa-search" ></i>
+								</button>
+							</form>
+						</div>
+						<!-- Favourite Area -->
+						<div class="favourite-area">
+							<a href="#"><img src="{{ asset('assets/img/core-img/heart.svg')}}" alt=""></a>
+						</div>
+						<!-- User Login Info -->
+						<div class="user-login-info">
+            			{% if is_granted('ROLE_USER') %}
+							<a href="{{ path('app_acount_user') }}"><img src="{{ asset('assets/img/core-img/user.svg')}}" class="green"></a>
+
+						{% else %}
+							
+							<a href="{{ path('app_register') }}"><img src="{{ asset('assets/img/core-img/user.svg')}}" ></a>
+						{% endif %}
+						
+						</div>
+						<!-- Cart Area -->
+						<div class="cart-area">
+							<a href="#" id="essenceCartBtn"><img src="{{ asset('assets/img/core-img/bag.svg')}}" alt="">
+								<span id="quantityCartOne">{{quantityCart}}</span>
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</header>
+				<!-- ##### Right Side Cart Area ##### -->
+		{% block scriptPage %}
+			
+
+
+		{% endblock %}
+

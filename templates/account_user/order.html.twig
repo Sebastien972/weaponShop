@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ma commande{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="heading_s1">
+                        <h4>Votre Addresse</h4>
+                        <div class="content">
+                            {{ order.deliveryAdress | replace({'[spr]':'<br>','FR':'france'})| raw }}
+                            {# <a href="{{ path('adresse_edit', {'id': adresse.id}) }}" class="btn btn-outline-secondary">Modifié</a> #}
+                            {# <a href="{{ path('checkout_edit') }}" class="btn btn-outline-secondary">changer d'adresse</a> #}
+
+                        </div>
+                    </div>
+
+                    <div class="heading_s1">
+                        <h4>votre transporteur</h4>
+                        <div class="content">
+
+                            {# {{order.transporteurs | replace({'[spr]':'<br>','FR':'france'})| raw  }} #}
+                            {# <a href="{{ path('checkout_edit') }}" class="btn btn-outline-secondary">changer de transporteur</a> #}
+
+
+                        </div>
+                    </div>
+                    {% if order.moreInformation %}
+                        <div class="heading_s1">
+                            <h4>Information complémentaire</h4>
+                            <div class="form-group mb-0">
+                                {{ order.moreInformation }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="order_review">
+                        <div class="heading_s1">
+                            <h4>Your Orders</h4>
+                        </div>
+                        <div class="table-responsive order_table">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for produit in order.orderDetails %}
+                                    <tr>
+                                        <td>{{ produit.weaponName }}<span class="product-qty"> x {{ produit.quantity }}</span></td>
+                                        <td>{{ produit.weaponPrice }} €</td>
+                                    </tr>
+                                   
+                                {% endfor %}
+
+                                </tbody>
+                                <tfoot>
+                               
+
+                                <tr>
+                                    <th>Total TTC</th>
+                                    <td class="product-subtotal">{{ order.subTotal / 100 }} €</td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="payment_method">
+                            <div class="heading_s1">
+                                <h4>Payment</h4>
+                            </div>
+
+                        </div>
+                        
+                            <form action="{{ path('app_acount_user' ) }} ">
+                                <button type="submit" >retour espace perso</button>
+                            </form>                    
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+ {% block scriptPage %}
+
+    {% endblock %}

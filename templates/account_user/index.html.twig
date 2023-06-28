@@ -1,0 +1,113 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountUserController!
+{% endblock %}
+{% block stylePage %}
+	<link rel="stylesheet" href="{{asset('assets/accountUserPage.css')}}">
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<h1 class="text-center">Compte d'utillisateur</h1>
+
+		<div id="containerAccount">
+
+			<div id="ContainerNavAccount">
+				<p class="navAccount" id="profilAccount">Profil</p>
+				<p class="navAccount" id="mesCommandesAccout">Mes commandes</p>
+				<p class="navAccount" id="mesAdressesAcount">Mes adresses</p>
+				<a class="navAccount" href="{{path('app_logout')}}">Déconnexion</a>
+			</div>
+
+
+			<div id="containerInfoAccount">
+				{#  profil #}
+				<div class="infoAccount visible" id="templatProfil">
+					{% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('admin') }}" target='_blank' class="card-link">admin</a>
+					{% endif %}
+					
+					<p>hello {{app.user.firstName}}</p>
+					{{ form_start(resetFormResetPass) }}
+					{{ form_row(resetFormResetPass.plainPassword) }}
+					<button class="btn btn-primary">Reset password</button>
+					{{ form_end(resetFormResetPass) }}
+				</div>
+
+
+				<div class="infoAccount" id="templatMesComandes">
+					<div class="card-header text-center">
+						<h3>mes commande</h3>
+					</div>
+
+
+					<div class="accordion accordion-flush" id="accordionFlushExample">
+						{% if order %}
+							{% for order in order %}
+									<div class="accordion-item">
+										<h2 class="accordion-header" id="flush-headingOne">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#commande{{order.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+											order. référence: {{order.reference}} 
+										</button>
+										</h2>
+										<div id="commande{{order.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+											<div class="accordion-body">
+		
+		
+												<p>Ref: {{order.reference}}</p>
+												<p>Adresse de livraison: {{order.deliveryAdress  | replace({'[spr]':'<br>','FR':'france'})| raw}}</p>
+												<p>Prix de la order.: {{order.subTotal / 100}} € TTC</p>
+												{# <P>Votre coli cera pris en charge par: {{order..transporteurs}}</P> #}
+												<p>commade passer le : {{order.createdAt | date('d/m/y')}}</p>
+												<p>{{order.quantity}} articles dans votre order.</p>
+												<a href="{{ path('app_acount_user_order',{id:order.id})}}">Plus de détail</a>
+											</div>
+										</div>
+									</div>
+									
+							{% endfor %}
+						{% endif %}
+					</div>
+
+				</div>
+
+				<div class=" infoAccount" id="templatMesAdresse">
+					<div class="card-header text-center">
+						Mes adresses
+					</div>
+			
+					{% if app.user.adresses %}
+						<div class="row container">
+							{% for adress in app.user.adresses %}
+								<div class="card col-4 cartInfo">
+									<div class="card-body">
+										<h5 class="card-title">{{ adress.fullName }}</h5>
+										<p>{{ adress.fullName }}<br>
+											{{ adress.adress }}<br>
+											{{ adress.city }}
+											{{ adress.postalCode }}<br>
+											{{ adress.country }}
+										</p>
+										{# <a class="card-link">{% include('adress/_delete_form.html.twig')%}</a> #}
+										<a href="{{ path('app_adress_edit', {'id': adress.id}) }}" class="card-link">edit</a>
+										{% include('adress/_delete_form.html.twig')%}
+									</div>
+
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
+									<a href="{{ path('app_adress_new') }}" class="card-link">add adress</a>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+{% endblock %}
+{% block scriptPage %}
+	<script src="{{asset('assets/accountUserScripte.js')}}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+ {% if app.session.get('cartData').fullCart is defined   %}
+	{% set cart = app.session.get('cartData').fullCart %}
+
+{% endif %}
+
+{% if cart is defined %}
+	{% for armament in cart %}
+				
+        <div class='Cart-Items'>
+            <div class='image-box'>
+            <a href="{{ path('armament',{slug:armament.armament.slug}) }}">
+                <img src='/assets/img/armament/{{armament.armament.image}}' style=' height=120px;'  />
+            </a>
+            </div>
+            <div class='about'>
+                <h1 class='title'>{{armament.armament.name}}</h1>
+                <h3 class='subtitle'>calibert: {{armament.armament.calibre}}</h3>
+            </div>
+            <div class='counter'>
+	<button class="remove btn" value={{armament.armament.id}}>-</button>
+    <div class='count'>{{armament.quantity}}</div>
+	<button class="addMore btn" value={{armament.armament.id}} >+</button>
+    
+    </div>
+    <div class='prices'>
+    <div class='amount'>{{(armament.armament.price/100) * armament.quantity}} €</div>
+	<button value={{armament.armament.id}} class="remove removeItem">
+        <u>Remove</u>
+    </button>
+
+    </div>
+
+    </div>
+
+    	{% endfor %} 
+			{% endif %}

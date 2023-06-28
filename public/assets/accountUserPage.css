@@ -1,0 +1,58 @@
+/* card register    */
+.card-register
+{
+    margin-top: 30px;
+    width: 65%;
+    box-shadow: 1px 1px 10px #AAAAAA;
+    border-radius: 2%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#btn-register
+{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#containerAccount
+{
+    height: 500px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+#containerInfoAccount
+{
+    width: 65%;
+    height: 100%;
+    position: relative;
+    z-index: 122;
+}
+
+#ContainerNavAccount
+{
+    width: 35%;
+}
+.infoAccount
+{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    overflow-y: scroll;
+}
+.cartInfo
+{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    
+}
+.visible
+{
+    display: block;
+}
+.navAccount
+{
+    cursor: pointer;
+}

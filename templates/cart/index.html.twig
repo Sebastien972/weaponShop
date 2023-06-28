@@ -1,0 +1,45 @@
+{% block stylePage %}
+			<link rel="stylesheet" href="{{asset('/assets/css/cartStyle.css')}}">
+		
+		{% endblock %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!{% endblock %}
+
+{% block body %}
+<div class="breadcumb_area bg-img" style="background-image: url({{asset('/assets/img/bg-img/breadcumb.jpg')}});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="page-title text-center">
+                        <h2>Cart</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="containerPageCart">
+    <div class="containerCart">
+        <div class='Cart-Container'>
+            <div class='Header'>
+                <h3 class='Heading'>Shopping Cart</h3>
+                <p id='deletPanier' class='Action'>Remove all</p>
+            </div>
+        </div>
+        <div id="cartPage">
+            {% include "cart/_Cart.html.twig" %}
+        </div>         
+				
+		
+
+    </div>
+    <div id='containerCheckout'>
+    <a href="{{path('app_home')}}">retour</a>
+	<a href="{{path('app_checkout')}}" class="btn btn-outline-secondary">Checkout</a>
+
+    </div>
+</div>
+{% endblock %}
+{% block scriptPage %}
+    <script src="{{asset('/assets/js/cartScripte.js')}}"></script>
+{% endblock %}

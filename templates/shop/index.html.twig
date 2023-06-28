@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShopController!
+{% endblock %}
+
+{% block body %}
+
+	<!-- ##### Shop Grid Area Start ##### -->
+	<section class="shop_grid_area section-padding-80">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-md-4 col-lg-3">
+					<div
+						class="shop_sidebar_area">
+
+						<!-- ##### Single Widget ##### -->
+						<div
+							class="widget catagory mb-50">
+							<!-- Widget Title -->
+							<h6 class="widget-title mb-30">Catagories</h6>
+
+							<!--  Catagories  -->
+							<div class="catagories-menu">
+								<ul
+									id="menu-content2" class="menu-content collapse show">
+
+									<!-- Single Item -->
+
+										<li value='all' id='categorieItemsAll' class="collapsed">
+											<a href="#">all catégorie</a>
+										</li>
+									{% for categories in categorie %}
+										<li data-toggle="collapse" data-target="#collapse{{categories.id}}" value='{{categories.id}}' class="collapsed categorieItems" aria-expanded="true" aria-controls="collapse{{categories.id}}">
+											<a href="#">{{categories}}</a>
+											<ul class="sub-menu collapse" id="collapse{{categories.id}}"  aria-labelledby="{{categories.id}}" data-parent="#menu-content2">
+												{% set intervenantArray = [] %}
+												{% for arms  in categories.armament %}
+													{% if arms.calibre not in intervenantArray %}
+														{% set intervenantArray = intervenantArray|merge([arms.calibre]) %}
+													{% endif %}
+												{% endfor %}
+												{% for arms in intervenantArray %}
+													<li value='{{arms.id}}' class='subCat'>
+														<a href="#">{{arms}}</a>
+													</li>
+												{% endfor %}
+											</ul>
+										</li>
+									{%  endfor %}
+									<!-- Single Item -->
+
+								</ul>
+							</div>
+						</div>
+
+						<!-- ##### Single Widget ##### -->
+
+						<div
+							class="widget price mb-50">
+							<!-- Widget Title -->
+							<h6 class="widget-title mb-30">Filter by</h6>
+							<!-- Widget Title 2 -->
+							<p class="widget-title2 mb-30">Price</p>
+
+							<div class="slider">
+								<div class="progress"></div>
+							</div>
+							<div class="range-input">
+								<input type="range" class="range-min" min="0" max="{{priceMax.0.price / 100 }}" value="0" step="100">
+								<input type="range" class="range-max" min="0" max="{{(priceMax.0.price / 100) + 100 }}" value="{{priceMax.0.price / 100 }}" step="100">
+								<input id='maxprice' type="hidden" name="maxprice" value='{{(priceMax.0.price / 100) + 100 }}'>
+							</div>
+							<div class="price-input row justify-content-between p-3">
+								<div>
+									<label>Min</label>
+									<p id="min-value">0 €</p>
+								</div>								
+								<div>
+									<label>Max</label>
+									<p id="max-value">{{(priceMax.0.price / 100)|number_format(2,',', ' ')}}€</p>
+								</div>
+							</div>
+
+
+						</div>
+
+						<!-- ##### Single Widget ##### -->
+					{# <div class="widget color mb-50">
+																																					                            <!-- Widget Title 2 -->
+																																					                            <p class="widget-title2 mb-30">Color</p>
+																																					                            <div class="widget-desc">
+																																					                                <ul class="d-flex">
+																																					                                    <li><a href="#" class="color1"></a></li>
+																																					                                    <li><a href="#" class="color2"></a></li>
+																																					                                    <li><a href="#" class="color3"></a></li>
+																																					                                    <li><a href="#" class="color4"></a></li>
+																																					                                    <li><a href="#" class="color5"></a></li>
+																																					                                    <li><a href="#" class="color6"></a></li>
+																																					                                    <li><a href="#" class="color7"></a></li>
+																																					                                    <li><a href="#" class="color8"></a></li>
+																																					                                    <li><a href="#" class="color9"></a></li>
+																																					                                    <li><a href="#" class="color10"></a></li>
+																																					                                </ul>
+																																					                            </div>
+																																					                        </div> #}
+
+						<!-- ##### Single Widget ##### -->
+						{# <div class="widget brands mb-50"> <!-- Widget Title 2 -->
+																																			</div>
+																																				</div> #}
+					</div>
+				</div>
+
+				<div id='shop' class="col-12 col-md-8 col-lg-9">
+
+					{% include "shop/_shop.html.twig" %}
+
+				</div>
+			</section>
+			<!-- ##### Shop Grid Area End ##### -->
+		{% endblock %}
+		{% block scriptPage %}
+			<script src="{{ asset('/assets/js/Shop.js') }}"></script>
+		{% endblock %}

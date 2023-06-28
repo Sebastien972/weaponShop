@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Adress
+{% endblock %}
+
+{% block body %}
+	<h1>Create new Adress</h1>
+
+	
+
+	<a href="{{ path('app_adress_index') }}">back to list</a>
+	
+	<div class="checkout_area section-padding-80">
+		<div class="container">
+			<div class="row">
+				{% for flash_error in app.flashes('checkout_message') %}
+					<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+				{% endfor %}
+				<div class="container">
+					<div class="checkout_details_area mt-50 clearfix">
+
+						<div class="cart-page-heading mb-30">
+							<h5>Add a Address</h5>
+						</div>
+                        {{ include('adress/_form.html.twig') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+	
+
+	<!-- ##### Checkout Area End ##### -->
+{% endblock %}
