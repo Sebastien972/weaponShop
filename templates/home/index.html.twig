@@ -1,12 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Armament store
-{% endblock %}
+{% block title %}Armament store{% endblock %}
 
 {% block body %}
-
-
-	<!-- ##### Welcome Area Start ##### -->
 	<section id='body' class="welcome_area bg-img background-overlay" style="background-image: url({{asset('assets/img/dan338-sniper-daesh.webp')}});">
 		<div class="container h-100">
 			<div class="row h-100 align-items-center">
@@ -20,9 +16,6 @@
 			</div>
 		</div>
 	</section>
-	<!-- ##### Welcome Area End ##### -->
-
-	<!-- ##### Top Catagory Area Start ##### -->
 	<div class="top_catagory_area section-padding-80 clearfix">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -42,14 +35,10 @@
 			</div>
 		</div>
 	</div>
-	<!-- ##### Top Catagory Area End ##### -->
-
-	<!-- ##### CTA Area Start ##### -->
 	<div class="cta-area">
 		<div class="container">
 			<div class="row new_weapons_slides owl-carousel">
 				{% for armamentPopular in armamentPopular %}
-
 					<div class="col-12">
 						<div class="cta-content bg-img background-overlay" style="background-image: url({{asset('assets/img//armament/')}}{{armamentPopular.image}});">
 							<div class="h-100 d-flex align-items-center justify-content-end">
@@ -62,13 +51,9 @@
 						</div>
 					</div>
 				{% endfor %}
-
 			</div>
 		</div>
 	</div>
-	<!-- ##### CTA Area End ##### -->
-
-	<!-- ##### New Arrivals Area Start ##### -->
 	<section class="new_arrivals_area section-padding-80 clearfix">
 		<div class="container">
 			<div class="row">
@@ -79,19 +64,14 @@
 				</div>
 			</div>
 		</div>
-
-
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="popular-products-slides owl-carousel">
 
 						{% for armamentPopular in armamentPopular %}
-							<!-- Single Product -->
-							<div
-								class="single-product-wrapper">
+							<div class="single-product-wrapper">
 
-								<!-- Product Image -->
 								<div class="product-img">
 									<img src="{{ asset('assets/img/armament/')}}{{armamentPopular.image}}" alt="">
 
@@ -99,19 +79,14 @@
 
 
 								</div>
-								<!-- Product Description -->
+
 								<div class="product-description">
 									<a href="{{ path('armament',{slug:armamentPopular.slug}) }}">
 										<h6 class='title'>{{armamentPopular.name}}</h6>
 									</a>
-									<span>{{armamentPopular.calibre}}
-										mm</span>
+									<span>{{armamentPopular.calibre}} mm</span>
 									<p class="product-price">{{(armamentPopular.price / 100)|number_format(2,',', ' ')}}€</p>
-
-									<!-- Hover Content -->
-									<div
-										class="hover-content">
-										<!-- Add to Cart -->
+									<div class="hover-content">
 										<div class="add-to-cart-btn">
 											<button type="button" class="btn btn-outline-secondary btnAdd" value="{{armamentPopular.id}}">add to cart</button>
 										</div>
@@ -126,59 +101,30 @@
 			</div>
 		</div>
 	</section>
-	<!-- ##### New Arrivals Area End ##### -->
+	<div class="brands-area d-flex align-items-center justify-content-between">
 
-	<!-- ##### Brands Area Start ##### -->
-	<div
-		class="brands-area d-flex align-items-center justify-content-between">
-		<!-- Brand Logo -->
 		<div class="single-brands-logo">
 			<img src="{{asset('assets/img/core-img/brand1.png')}}" alt="">
 		</div>
-		<!-- Brand Logo -->
 		<div class="single-brands-logo">
 			<img src="{{asset('assets/img/core-img/brand2.png')}}" alt="">
 		</div>
-		<!-- Brand Logo -->
 		<div class="single-brands-logo">
 			<img src="{{asset('assets/img/core-img/brand3.png')}}" alt="">
 		</div>
-		<!-- Brand Logo -->
 		<div class="single-brands-logo">
 			<img src="{{asset('assets/img/core-img/brand4.png')}}" alt="">
 		</div>
-		<!-- Brand Logo -->
 		<div class="single-brands-logo">
 			<img src="{{asset('assets/img/core-img/brand4.png')}}" alt="">
 		</div>
-		<!-- Brand Logo -->
+
 		<div class="single-brands-logo">
 			<img src="{{asset('assets/img/core-img/brand6.png')}}" alt="">
 		</div>
 	</div>
-	<!-- ##### Brands Area End ##### -->
-
-	<!-- ##### Footer ##### -->
-
-
 {% endblock %}
-{# {% block javascripts %}
-	{{ encore_entry_script_tags('app') }}
-	<script src="{{ asset('/assets/js/Cart.js') }}"></script>
-	<script src="{{ asset('/assets/js/jquery/jquery-2.2.4.min.js')}}"></script>
-	<!-- Popper js -->
-	<script src="{{asset('/assets/js/popper.min.js')}}"></script>
-	<!-- Bootstrap js -->
-	<script src="{{ asset('/assets/js/bootstrap.min.js')}}"></script>
-	<!-- Plugins js -->
-	<script src="{{ asset('/assets/js/plugins.js')}}"></script>
-	<!-- Classy Nav js -->
-	<script src="{{ asset('/assets/js/classy-nav.min.js')}}"></script>
-	<!-- Active js -->
-	<script src="{{ asset('/assets/js/active.js') }}"></script>
 
-
-{% endblock %} #}
 {% block scriptPage %}
 	<script src="{{ asset('/assets/js/Search.js') }}"></script>
 {% endblock %}

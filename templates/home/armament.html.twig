@@ -6,10 +6,7 @@
 {% endblock %}
 
 {% block body %}
-	<section
-		class="single_product_details_area d-flex align-items-center">
-
-		<!-- Single Product Thumb -->
+	<section class="single_product_details_area d-flex align-items-center">
 		<div class="single_product_thumb clearfix">
 			<div class="product_thumbnail_slides owl-carousel">
 				<img src="{{asset('assets/img/armament/')}}{{armes.image}}" alt="">
@@ -17,13 +14,11 @@
 			</div>
 		</div>
 
-		<!-- Single Product Description -->
 		<div class="single_product_desc clearfix">
 
 			<div class='about'>
 				<h1 class='title'>{{armes.name}}</h1>
-				<h3 class='subtitle'>calibert:
-					{{armes.calibre}}</h3>
+				<h3 class='subtitle'>calibert: {{armes.calibre}}</h3>
 			</div>
 
 			<p class="product-price">{{armes.price / 100}}
@@ -36,8 +31,6 @@
 				<button type="button" class="btn btn-outline-secondary btnAdd" value="{{armes.id}}">add to cart</button>
 			</div>
 
-			<!-- Form -->
-
 		</div>
 	</section>
 {% endblock %}
@@ -45,16 +38,15 @@
 	{{ encore_entry_script_tags('app') }}
 	<script src="{{ asset('/assets/js/Cart.js') }}"></script>
 	<script src="{{ asset('/assets/js/jquery/jquery-2.2.4.min.js')}}"></script>
-	<!-- Popper js -->
-	<script src="{{asset('/assets/js/popper.min.js')}}"></script>
-	<!-- Bootstrap js -->
-	<script src="{{ asset('/assets/js/bootstrap.min.js')}}"></script>
-	<!-- Plugins js -->
-	<script src="{{ asset('/assets/js/plugins.js')}}"></script>
-	<!-- Classy Nav js -->
-	<script src="{{ asset('/assets/js/classy-nav.min.js')}}"></script>
-	<!-- Active js -->
-	<script src="{{ asset('/assets/js/active.js') }}"></script>
 
+	<script src="{{asset('/assets/js/popper.min.js')}}"></script>
+
+	<script src="{{ asset('/assets/js/bootstrap.min.js')}}"></script>
+
+	<script src="{{ asset('/assets/js/plugins.js')}}"></script>
+
+	<script src="{{ asset('/assets/js/classy-nav.min.js')}}"></script>
+
+	<script src="{{ asset('/assets/js/active.js') }}"></script>
 
 {% endblock %}

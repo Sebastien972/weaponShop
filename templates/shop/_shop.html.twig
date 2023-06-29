@@ -1,8 +1,7 @@
 <div class="shop_grid_product_area">
 	<div class="row">
 		<div class="col-12">
-			<div
-				class="product-topbar d-flex align-items-center justify-content-between">
+			<div class="product-topbar d-flex align-items-center justify-content-between">
 				<div class="total-products">
 					<p><span>{{total}}</span>products found</p>
 				</div>
@@ -41,10 +40,8 @@
 						<a href="{{ path('armament',{slug:produit.slug}) }}">
 							<h6  class='title' >{{produit.name}}</h6>
 						</a>
-						<span class='subtitle'>{{produit.calibre}}
-							mm</span>
+						<span class='subtitle'>{{produit.calibre}}mm</span>
 						<p class="product-price">{{(produit.price / 100)|number_format(2,',', ' ')}}€</p>
-
 						<div class="hover-content">
 							<div class="add-to-cart-btn">
 								<button type="button" class="btn btn-outline-secondary btnAdd" value="{{produit.id}}">add to cart</button>
@@ -79,3 +76,4 @@
 			{% endif %}
 		</ul>
 	</nav>
+</div>
