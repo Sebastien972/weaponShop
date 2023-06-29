@@ -25,11 +25,10 @@
 	<!-- ##### Top Catagory Area Start ##### -->
 	<div class="top_catagory_area section-padding-80 clearfix">
 		<div class="container">
-			<div
-				class="row justify-content-center">
-				<!-- Single Catagory -->
+			<div class="row justify-content-center">
+
 				{% for categories in categorie %}
-{% set categorie = filters %}
+					{% set categorie = filters %}
 
 					<div class="col-12 col-sm-6 col-md-4">
 						<div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url({{ asset('assets/img/')}}{{categories.image}});">
@@ -50,18 +49,18 @@
 		<div class="container">
 			<div class="row new_weapons_slides owl-carousel">
 				{% for armamentPopular in armamentPopular %}
-				
-				<div class="col-12">
-					<div class="cta-content bg-img background-overlay" style="background-image: url({{asset('assets/img//armament/')}}{{armamentPopular.image}});">
-						<div class="h-100 d-flex align-items-center justify-content-end">
-							<div class="cta--text">
-								<h6>NEW</h6>
-								<h2>{{armamentPopular.name}}</h2>
-								<a href="{{ path('armament',{slug:armamentPopular.slug}) }}" class="btn essence-btn">Buy Now</a>
+
+					<div class="col-12">
+						<div class="cta-content bg-img background-overlay" style="background-image: url({{asset('assets/img//armament/')}}{{armamentPopular.image}});">
+							<div class="h-100 d-flex align-items-center justify-content-end">
+								<div class="cta--text">
+									<h6>NEW</h6>
+									<h2>{{armamentPopular.name}}</h2>
+									<a href="{{ path('armament',{slug:armamentPopular.slug}) }}" class="btn essence-btn">Buy Now</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>						
 				{% endfor %}
 
 			</div>
@@ -94,10 +93,8 @@
 
 								<!-- Product Image -->
 								<div class="product-img">
-									<img
-									src="{{ asset('assets/img/armament/')}}{{armamentPopular.image}}" alt="">
+									<img src="{{ asset('assets/img/armament/')}}{{armamentPopular.image}}" alt="">
 
-									<!-- Hover Thumb -->
 									<img class="hover-img" src="{{ asset('assets/img/armament/')}}{{armamentPopular.image2}}" alt="">
 
 
@@ -183,5 +180,5 @@
 
 {% endblock %} #}
 {% block scriptPage %}
-			<script src="{{ asset('/assets/js/Search.js') }}"></script>
-		{% endblock %}
+	<script src="{{ asset('/assets/js/Search.js') }}"></script>
+{% endblock %}

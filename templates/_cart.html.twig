@@ -1,77 +1,69 @@
-       
-
 {% if app.session.get('cartData') is not null  %}
-{% set quantityCart = app.session.get('cartData').data.quantityCart %}
+	{% set quantityCart = app.session.get('cartData').data.quantityCart %}
 {% else %}
-{% set quantityCart = 0 %}
-	
+	{% set quantityCart = 0 %}
+
 {% endif %}
 
 <div class="cart-bg-overlay"></div>
 
-<div
-	class="right-side-cart-area">
-
-	<!-- Cart Button -->
+<div class="right-side-cart-area">
 	<div class="cart-button">
 		<a id="rightSideCart"><img src="{{ asset('assets/img/core-img/bag.svg')}}" alt="">
 			<span id='quantityCart' value='{{quantityCart}}'>{{quantityCart}}</span>
 		</a>
 	</div>
 
-	<div
-		class="cart-content d-flex">
+	<div class="cart-content d-flex">
+	
+		<div class="cart-list">
+		
+			{% if app.session.get('cartData').fullCart is defined   %}
+				{% set cart = app.session.get('cartData').fullCart %}
+			{% endif %}
+			`
+			{% if cart is defined %}
+				{% for armament in cart %}
 
-		<!-- Cart List Area -->
-		<div
-			class="cart-list">
-			<!-- Single Cart Item -->
-		{% if app.session.get('cartData').fullCart is defined   %}
-			{% set cart = app.session.get('cartData').fullCart %}
-		{% endif %}
-	`	{% if cart is defined %}
-			{% for armament in cart %}
-				
-				<div class="single-cart-item">
-					<div class="product-image">
-						<img
-						src="/assets/img/armament/{{armament.armament.image}}" class="cart-thumb" alt="">
+					<div class="single-cart-item">
+						<div class="product-image">
+							<img src="/assets/img/armament/{{armament.armament.image}}" class="cart-thumb" alt="">
 
-						<!-- Cart Item Desc -->
-						<div class="cart-item-desc">
-							<button value={{armament.armament.id}} class="product-remove removeItem">
-								<i class="fa fa-close" aria-hidden="true"></i>
-							</button>
+							<div class="cart-item-desc">
+								<button value={{armament.armament.id}} class="product-remove removeItem">
+									<i class="fa fa-close" aria-hidden="true"></i>
+								</button>
 
-							<p>QTY:
-								<button class="remove btnW" value={{armament.armament.id}}>-</button>
-								{{armament.quantity}}
-								<button class="addMore btnW" value={{armament.armament.id}} >+</button>
-							</p>
+								<p>QTY:
+									<button class="remove btnW" value={{armament.armament.id}}>-</button>
+									{{armament.quantity}}
+									<button class="addMore btnW" value={{armament.armament.id}}>+</button>
+								</p>
+
+							</div>
 
 						</div>
-
 					</div>
-				</div>
-				
-			{% endfor %}
+
+				{% endfor %}
 			{% endif %}
 
 		</div>
 		{% set subTotal = 0 %}
 		{% if app.session.get('cartData') is not null %}
-		{% set subTotal = app.session.get('cartData').data.subTotall %}
-		
+			{% set subTotal = app.session.get('cartData').data.subTotall %}
+
 		{% endif %}
 		<!-- Cart Summary -->
 		<div class="cart-amount-summary">
 
 			<h2>Summary</h2>
 			<ul class="summary-table">
-			
+
 				<li>
 					<span>subtotal:</span>
-					<span>{{(subTotal / 100)|number_format(2,',', ' ')}} €</span>
+					<span>{{(subTotal / 100)|number_format(2,',', ' ')}}
+						€</span>
 				</li>
 				<li>
 					<span>delivery:</span>
@@ -83,11 +75,12 @@
 				</li>
 				<li>
 					<span>total:</span>
-					<span>{{(subTotal / 100)|number_format(2,',', ' ')}} €</span>
+					<span>{{(subTotal / 100)|number_format(2,',', ' ')}}
+						€</span>
 				</li>
 			</ul>
 			<div class="checkout-btn mt-100">
-			
+
 				<a href="{{path('app_cart')}}" class="btn btn-outline-secondary">Watch my cart</a>
 			</div>
 		</div>

@@ -3,15 +3,10 @@
 		<div class="col-12">
 			<div
 				class="product-topbar d-flex align-items-center justify-content-between">
-				<!-- Total Products -->
 				<div class="total-products">
-					<p>
-						<span>{{total}}</span>
-						products found</p>
+					<p><span>{{total}}</span>products found</p>
 				</div>
-				<!-- Sorting -->
 				{% set queryParam = app.request.query.all %}
-
 				{% if queryParam is not empty and queryParam.sort is defined%}
 					{% if queryParam.sort == 'ASC' %}
 						{% set selectedA = "selected" %}{% set selectedD = "" %}
@@ -34,82 +29,53 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="row">
 		{% for produit in armament %}
-
-			<!-- Single Product -->
 			<div class="col-12 col-sm-6 col-lg-4">
-					<!-- Single Product -->
-							<div
-								class="single-product-wrapper">
+				<div class="single-product-wrapper">
+					<div class="product-img">
+						<img src="{{ asset('assets/img/armament/')}}{{produit.image}}" alt="">
+						<img class="hover-img" src="{{ asset('assets/img/armament/')}}{{produit.image2}}" alt="">
+					</div>
+					<div class="product-description">
+						<a href="{{ path('armament',{slug:produit.slug}) }}">
+							<h6  class='title' >{{produit.name}}</h6>
+						</a>
+						<span class='subtitle'>{{produit.calibre}}
+							mm</span>
+						<p class="product-price">{{(produit.price / 100)|number_format(2,',', ' ')}}€</p>
 
-								<!-- Product Image -->
-								<div class="product-img">
-									<img
-									src="{{ asset('assets/img/armament/')}}{{produit.image}}" alt="">
-
-									<!-- Hover Thumb -->
-									<img class="hover-img" src="{{ asset('assets/img/armament/')}}{{produit.image2}}" alt="">
-
-
-								</div>
-								<!-- Product Description -->
-								<div class="product-description">
-									<a href="{{ path('armament',{slug:produit.slug}) }}">
-										<h6  class='title' >{{produit.name}}</h6>
-									</a>
-									<span class='subtitle'>{{produit.calibre}}
-										mm</span>
-			{# <div class='about'>
-                <h1 class='title'>{{produit.name}}</h1>
-                <h3 class='subtitle'>calibert: {{produit.calibre}}</h3>
-            </div> #}
-									<p class="product-price">{{(produit.price / 100)|number_format(2,',', ' ')}}€</p>
-
-									<!-- Hover Content -->
-									<div
-										class="hover-content">
-										<!-- Add to Cart -->
-										<div class="add-to-cart-btn">
-											<button type="button" class="btn btn-outline-secondary btnAdd" value="{{produit.id}}">add to cart</button>
-										</div>
-									</div>
-								</div>
+						<div class="hover-content">
+							<div class="add-to-cart-btn">
+								<button type="button" class="btn btn-outline-secondary btnAdd" value="{{produit.id}}">add to cart</button>
 							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-
 		{% endfor %}
 		{% set queryParam = app.request.query.all %}
 		{% set queryString = queryParam|filter((v, k) => k != 'page' and k != 'ajax')|url_encode %}
-		
-		<!-- Pagination -->
 	</div>
 	<nav aria-label="navigation">
 		<ul class="pagination mt-50 mb-70">
 			{% set pages = (total / limit)|round(0, 'ceil') %}
-
-		
-		{% if pages != 0 %}
-
-			
-			<li class="page-item {{ (page == 1) ? "disabled" : "" }}">
-				<a class="page-link" href="{{ (page > 1) ? "?page=" ~ (page - 1) : "" }}&{{queryString}}">
-					<i class="fa fa-angle-left"></i>
-				</a>
-			</li>
-			{% for item in 1..(pages) %}
-				<li class="page-item {{ (page == item) ? "active" : "" }}">
-					<a class="page-link" href="?page={{item}}&{{queryString}}">{{item}}</a>
+			{% if pages != 0 %}
+				<li class="page-item {{ (page == 1) ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ (page > 1) ? "?page=" ~ (page - 1) : "" }}&{{queryString}}">
+						<i class="fa fa-angle-left"></i>
+					</a>
 				</li>
-			{% endfor %}
-
-			<li class="page-item {{ (page == pages) ? "disabled" : "" }}">
-				<a class="page-link" href="{{ (page < pages ) ? "?page=" ~ (page + 1)  : "" }}&{{queryString}}">
-					<i class="fa fa-angle-right"></i>
-				</a>
-			</li>
+				{% for item in 1..(pages) %}
+					<li class="page-item {{ (page == item) ? 'active' : '' }}">
+						<a class="page-link" href="?page={{item}}&{{queryString}}">{{item}}</a>
+					</li>
+				{% endfor %}
+				<li class="page-item {{ (page == pages) ? 'disabled' : '' }}">
+					<a class="page-link" href="{{ (page < pages ) ? '?page=' ~ (page + 1)  : '' }}&{{queryString}}">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</li>
 			{% endif %}
-		
 		</ul>
 	</nav>

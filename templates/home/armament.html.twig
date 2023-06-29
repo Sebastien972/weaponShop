@@ -1,41 +1,45 @@
-
 {% extends 'base.html.twig' %}
 
-       
-{% block title %}{{armes.name}}{% endblock %}
+
+{% block title %}
+	{{armes.name}}
+{% endblock %}
 
 {% block body %}
-<section class="single_product_details_area d-flex align-items-center">
+	<section
+		class="single_product_details_area d-flex align-items-center">
 
-        <!-- Single Product Thumb -->
-        <div class="single_product_thumb clearfix">
-            <div class="product_thumbnail_slides owl-carousel">
-                <img src="{{asset('assets/img/armament/')}}{{armes.image}}" alt="">
-                <img src="{{asset('assets/img/armament/')}}{{armes.image2}}" alt="">
-            </div>
-        </div>
+		<!-- Single Product Thumb -->
+		<div class="single_product_thumb clearfix">
+			<div class="product_thumbnail_slides owl-carousel">
+				<img src="{{asset('assets/img/armament/')}}{{armes.image}}" alt="">
+				<img src="{{asset('assets/img/armament/')}}{{armes.image2}}" alt="">
+			</div>
+		</div>
 
-        <!-- Single Product Description -->
-        <div class="single_product_desc clearfix">
-            
-            <div class='about'>
-                <h1 class='title'>{{armes.name}}</h1>
-                <h3 class='subtitle'>calibert: {{armes.calibre}}</h3>
-            </div>
-            {# <p class="product-price"><span class="old-price">$65.00</span> $49.00</p> #}
-            <p class="product-price">{{armes.price / 100}} €</p>
-            <h4>Description</h4>
-            <p class="product-desc">{{armes.description|raw }}</p>
-            <h4>More information</h4>
-            <p class="product-desc">{{armes.moreInformation|raw }}</p>
-            <div class="add-to-cart-btn">
-                <button type="button" class="btn btn-outline-secondary btnAdd" value="{{armes.id}}">add to cart</button>
-            </div>
+		<!-- Single Product Description -->
+		<div class="single_product_desc clearfix">
 
-            <!-- Form -->
-           
-        </div>
-    </section>
+			<div class='about'>
+				<h1 class='title'>{{armes.name}}</h1>
+				<h3 class='subtitle'>calibert:
+					{{armes.calibre}}</h3>
+			</div>
+
+			<p class="product-price">{{armes.price / 100}}
+				€</p>
+			<h4>Description</h4>
+			<p class="product-desc">{{armes.description|raw }}</p>
+			<h4>More information</h4>
+			<p class="product-desc">{{armes.moreInformation|raw }}</p>
+			<div class="add-to-cart-btn">
+				<button type="button" class="btn btn-outline-secondary btnAdd" value="{{armes.id}}">add to cart</button>
+			</div>
+
+			<!-- Form -->
+
+		</div>
+	</section>
 {% endblock %}
 {% block javascripts %}
 	{{ encore_entry_script_tags('app') }}
