@@ -61,7 +61,10 @@ class AdressController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_adress_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Adress $adress, AdressRepository $adressRepository): Response
+    public function edit(
+        Request $request, 
+        Adress $adress, 
+        AdressRepository $adressRepository): Response
     {
         $form = $this->createForm(AdressType::class, $adress);
         $form->handleRequest($request);
